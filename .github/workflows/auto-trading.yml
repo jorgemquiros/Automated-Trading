@@ -17,7 +17,6 @@ jobs:
   execution:
     runs-on: ubuntu-latest
     if: github.event.schedule == '0 15 * * 1-5' || github.event_name == 'workflow_dispatch'
-    needs: analysis
     steps:
       - name: Execute Trades
         run: curl -X POST "${{ secrets.EXECUTION_URL }}"
