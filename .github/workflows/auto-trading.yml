@@ -15,6 +15,6 @@ jobs:
   execution:
   needs: analysis
   runs-on: ubuntu-latest
-    steps:
+  steps:
       - name: Execute Trades
         run: curl -X POST "${{ secrets.EXECUTION_URL }}"
