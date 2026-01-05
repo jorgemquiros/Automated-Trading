@@ -2,7 +2,7 @@ name: Automated Trading
 
 on:
   schedule:
-    - cron: '0 14 * * 1-5'  # 9am EST
+    - cron: '0 14 * * 1-5'  # 9am EST, weekdays only
   workflow_dispatch:
 
 jobs:
@@ -11,10 +11,10 @@ jobs:
     steps:
       - name: Run Market Analysis
         run: curl -X POST "${{ secrets.ANALYSIS_URL }}"
-  
+
   execution:
-  needs: analysis
-  runs-on: ubuntu-latest
-  steps:
+    needs: analysis
+    runs-on: ubuntu-latest
+    steps:
       - name: Execute Trades
         run: curl -X POST "${{ secrets.EXECUTION_URL }}"
